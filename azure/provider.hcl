@@ -53,18 +53,19 @@ locals {
     #]
 
     default_ad_owners = [
-        "coenie@kineticskunk.io",
-        "jonathan@kineticskunk.com",
-        "adam@kineticskunk.com",
+
     ]
 
     # NOTE: Placeholder subscription configuration
     subscriptions = {
         "default" = {
             alias = "default"
-            name = "Kinetic Skunk Sponsored Subscription"
-            subscription_id = "63817644-bba0-4d70-a069-7de81cbd296e"
-            tenant_id = "d4a39087-ec22-44f5-9bb7-68b71271c26a"
+            # name = "Kinetic Skunk Sponsored Subscription"
+            name = "Azure for Students"
+            # subscription_id = "63817644-bba0-4d70-a069-7de81cbd296e"
+            subscription_id = "d4aed6b4-8573-4645-b7a3-3cf34177e822"
+            # tenant_id = "d4a39087-ec22-44f5-9bb7-68b71271c26a"
+            tenant_id = "cc6148eb-d356-4f38-900f-3a4d62b954c8"
         }
     }
     sub_data = local.subscriptions[local.subscription]
@@ -198,21 +199,21 @@ provider "azuredevops" {
 EOF
 }
 
-remote_state {
-    backend = "azurerm"
-    generate = {
-        path      = "backend.tf"
-        if_exists = "overwrite_terragrunt"
-    }
-    config = {
-        tenant_id = local.state.sub.tenant_id
-        subscription_id = local.state.sub.subscription_id
-        resource_group_name  = local.state.rg
-        storage_account_name = local.state.sa
-        container_name = local.state.container
-        key =   local.state.key
-    }
-}
+# remote_state {
+#     backend = "azurerm"
+#     generate = {
+#         path      = "backend.tf"
+#         if_exists = "overwrite_terragrunt"
+#     }
+#     config = {
+#         tenant_id = local.state.sub.tenant_id
+#         subscription_id = local.state.sub.subscription_id
+#         resource_group_name  = local.state.rg
+#         storage_account_name = local.state.sa
+#         container_name = local.state.container
+#         key =   local.state.key
+#     }
+# }
 
 inputs = {
     base_name = local.base_name

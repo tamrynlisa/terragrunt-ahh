@@ -1,0 +1,5 @@
+# Ignore Terraform and Terragrunt cache directories
+.terraform/
+.terragrunt-cache/
+
+.env

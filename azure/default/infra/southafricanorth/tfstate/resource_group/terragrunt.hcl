@@ -15,7 +15,12 @@ include "common" {
 }
 
 terraform {
-    source = "${get_repo_root()}/src/terraform/azure//resource_group"
+    # source = "${get_repo_root()}/src/terraform/azure//resource_group"
+    source = "${get_repo_root()}/src/azure//resource_group"
+}
+
+inputs = {
+    name = "rg-default-infra-tfstate"
 }
 
 # NOTE: Without this the root doesn't work.
